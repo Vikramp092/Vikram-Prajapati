@@ -1,0 +1,85 @@
+import streamlit as st
+
+# ---------------- TAX FUNCTIONS ---------------- #
+
+def old_regime_tax(income, deductions):
+    taxable_income = max(income - deductions, 0)
+    tax = 0
+
+    if taxable_income <= 250000:
+        tax = 0
+    elif taxable_income <= 500000:
+        tax = (taxable_income - 250000) * 0.05
+    elif taxable_income <= 1000000:
+        tax = 12500 + (taxable_income - 500000) * 0.20
+    else:
+        tax = 112500 + (taxable_income - 1000000) * 0.30
+
+    # Rebate u/s 87A
+    if taxable_income <= 500000:
+        tax = 0
+
+    return tax
+
+
+def new_regime_tax(income):
+    income = max(income - 50000, 0)  # Standard deduction
+    tax = 0
+
+    slabs = [
+        (300000, 0),
+        (600000, 0.05),
+        (900000, 0.10),
+        (1200000, 0.15),
+        (1500000, 0.20),
+        (float('inf'), 0.30)
+    ]
+
+    prev = 0
+
+    for limit, rate in slabs:
+        if income > limit:
+            tax += (limit - prev) * rate
+            prev = limit
+        else:
+            tax += (income - prev) * rate
+            break
+
+    # Rebate u/s 87A (new regime)
+    if income <= 700000:
+        tax = 0
+
+    return tax
+
+
+def add_cess(tax):
+    return tax * 1.04  # 4% cess
+
+
+# ---------------- UI ---------------- #
+
+st.set_page_config(page_title="Income Tax Calculator", layout="centered")
+
+st.title("💰 Income Tax Calculator (India)")
+
+st.write("Compare Old vs New Tax Regime")
+
+income = st.number_input("Enter Total Income (₹)", min_value=0)
+deductions = st.number_input("Enter Deductions (80C, 80D etc.) (₹)", min_value=0)
+
+if st.button("Calculate Tax"):
+
+    old_tax = add_cess(old_regime_tax(income, deductions))
+    new_tax = add_cess(new_regime_tax(income))
+
+    st.subheader("📊 Results")
+
+    st.write(f"Old Regime Tax (incl. cess): ₹{round(old_tax, 2)}")
+    st.write(f"New Regime Tax (incl. cess): ₹{round(new_tax, 2)}")
+
+    if old_tax < new_tax:
+        st.success("✅ Old Regime is Better")
+    elif new_tax < old_tax:
+        st.success("✅ New Regime is Better")
+    else:
+        st.info("Both regimes result in same tax")
