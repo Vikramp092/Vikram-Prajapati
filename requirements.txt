@@ -1,0 +1,15 @@
+# Professional Depreciation Calculator Requirements
+# ================================================
+
+# Core dependencies for Excel generation and data processing
+pandas>=2.0.0          # Data manipulation and analysis
+openpyxl>=3.1.0        # Excel file creation and formatting
+
+# Optional: For enhanced functionality (uncomment if needed)
+# xlsxwriter>=3.0.0    # Alternative Excel writer (faster for large files)
+# numpy>=1.24.0        # Numerical computations (if extended)
+
+# Development dependencies (for testing and development)
+# pytest>=7.0.0        # Testing framework
+# black>=23.0.0       # Code formatting
+# flake8>=6.0.0       # Linting

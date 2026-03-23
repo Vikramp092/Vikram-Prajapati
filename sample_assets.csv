@@ -1,0 +1,13 @@
+# Sample Asset Data for Professional Depreciation Calculator
+# ============================================================
+# Format: Asset Name,Cost of Asset,Date of Purchase,Date Put to Use,Asset Category,Residual Value,Useful Life,Depreciation Rate,Block of Asset
+
+Asset Name,Cost of Asset,Date of Purchase,Date Put to Use,Asset Category,Residual Value,Useful Life,Depreciation Rate,Block of Asset
+Office Computer,50000,01/04/2023,01/04/2023,Plant & Machinery,5000,5,15.0,Block A
+Office Furniture,25000,15/06/2023,15/06/2023,Furniture & Fittings,2500,10,10.0,Block B
+Factory Machine,200000,01/01/2023,01/07/2023,Plant & Machinery,20000,15,7.5,Block A
+Building,1000000,01/04/2022,01/04/2022,Building,100000,60,5.0,Block C
+Motor Vehicle,800000,01/10/2023,01/10/2023,Motor Cars,80000,8,15.0,Block D
+Server Equipment,150000,01/07/2023,15/08/2023,Plant & Machinery,15000,6,15.0,Block A
+Air Conditioner,75000,01/05/2023,01/06/2023,Plant & Machinery,7500,10,15.0,Block A
+Generator,300000,01/03/2023,01/09/2023,Plant & Machinery,30000,15,7.5,Block A
